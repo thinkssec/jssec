@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.test.dao.CeshiDao">
+    
+	<sql id="ceshiColumns">
+		a.col1_l1 AS "col1L1",
+		a.col2_l2 AS "col2L2",
+		a.col3_l3_j3 AS "col3L3J3",
+		a.col4 AS "col4",
+		a.col5 AS "col5",
+		a.col6 AS "col6",
+		a.col7 AS "col7"
+	</sql>
+	
+	<sql id="ceshiJoins">
+	</sql>
+    
+	<select id="get" resultType="Ceshi">
+		SELECT 
+			<include refid="ceshiColumns"/>
+		FROM ceshi a
+		<include refid="ceshiJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="Ceshi">
+		SELECT 
+			<include refid="ceshiColumns"/>
+		FROM ceshi a
+		<include refid="ceshiJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Ceshi">
+		SELECT 
+			<include refid="ceshiColumns"/>
+		FROM ceshi a
+		<include refid="ceshiJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ceshi(
+			col1_l1,
+			col2_l2,
+			col3_l3_j3,
+			col4,
+			col5,
+			col6,
+			col7
+		) VALUES (
+			#{col1L1},
+			#{col2L2},
+			#{col3L3J3},
+			#{col4},
+			#{col5},
+			#{col6},
+			#{col7}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ceshi SET 	
+			col1_l1 = #{col1L1},
+			col2_l2 = #{col2L2},
+			col3_l3_j3 = #{col3L3J3},
+			col4 = #{col4},
+			col5 = #{col5},
+			col6 = #{col6},
+			col7 = #{col7}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM ceshi
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
